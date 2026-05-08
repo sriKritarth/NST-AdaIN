@@ -21,7 +21,13 @@ class CustomImageDataset(Dataset):
     
     def __getitem__(self, index):
         image_path = os.path.join(self.root_dir , self.filename[index])
-        image = Image.open(image_path).convert("RGB")
+        try:
+            image = Image.open(image_path).convert("RGB")
+        except Exception as e:
+            print(f"Skipping corrupted image: {image_path} | Error: {e}")
+            new_index = (index + 1) % len(self.filename)
+            return self.__getitem__(new_index)
+
 
         if self.transform:
             image = self.transform(image)

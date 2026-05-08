@@ -62,7 +62,7 @@ def main():
    style_dataset = CustomImageDataset(args.style_dataset , transform=style_transform)
 
    content_loader = DataLoader(content_dataset , batch_size=args.batch_size , shuffle=True , pin_memory=True , drop_last=True)
-   style_loader = DataLoader(style_dataset , batch_size=args.batch_size , shuffle=True , pin_memory=True , drop_last=True)
+   style_loader = DataLoader(style_dataset , batch_size=args.batch_size , shuffle=True , pin_memory=True , drop_last=True )
    
 
    encoder = VggEncoder(args.vgg).to(device)
@@ -100,10 +100,12 @@ def main():
       running_closs = 0
       running_sloss = 0
       for c_image , s_image in progress_bar:
+         
          optimizer.zero_grad()
-         c_image.to(device)
-         s_image.to(device)
-         optimizer.zero_grad()
+
+         c_image = c_image.to(device , dtype = torch.float32 , non_blocking = True)
+         s_image = s_image.to(device , dtype = torch.float32 , non_blocking = True)
+
 
          c_feats = encoder(c_image)
          s_feats = encoder(s_image)
@@ -157,4 +159,6 @@ def main():
       
 
 if __name__ == "__main__":
+   device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+   print(device)
    main()

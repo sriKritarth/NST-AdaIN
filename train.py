@@ -32,7 +32,7 @@ def parse_arguments():
    parser.add_argument("--s_wt", type=float , default=5.0 , help="Style weights")
 
    parser.add_argument("--log_interval" , type = int , default= 1 , help="Log interval")
-   parser.add_argument("--save_interval" , type=int , default = 2 , help="Save interval")
+   parser.add_argument("--save_interval" , type=int , default = 5 , help="Save interval")
 
    parser.add_argument("--resume" , action="store_true" , default=False , help="Resume training")
    parser.add_argument("--decoder_path" , type = str , default=None , help = "Path to decoder checkpoints")

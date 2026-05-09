@@ -9,11 +9,11 @@ crop : False
 batch_size : 4
 lr : 0.0001
 lr_decay : 5e-05
-epoch : 160
+epoch : 140
 c_wt : 1.0
 s_wt : 5.0
 log_interval : 1
-save_interval : 2
-resume : False
-decoder_path : None
-optimizer_path : None
+save_interval : 5
+resume : True
+decoder_path : experiment\major-dataset\decoder18.pth
+optimizer_path : experiment\major-dataset\optimizer18.pth

@@ -1,3 +1,10 @@
-torch
-tqdm
-torchvision
+torch==2.11.0+cu126
+tqdm==4.67.3
+torchvision==0.26.0+cu126
+flask
+flask_wtf
+flask_bootstrap
+wtforms
+Werkzeug==3.1.4
+WTForms==3.2.1
+gunicorn

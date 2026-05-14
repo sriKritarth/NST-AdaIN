@@ -55,7 +55,7 @@ NST-AdaIN/
 ├── train.py                # Training script
 ├── code.ipynb              # Jupyter notebook for exploration
 ├── requirements.txt        # Python dependencies
-├── Procfile                # Heroku deployment config
+├── Procfile                # Render deployment config
 ├── vgg_normalised.pth      # Pre-trained normalised VGG encoder weights
 ├── utils/
 │   ├── model.py            # VggEncoder and Decoder architectures

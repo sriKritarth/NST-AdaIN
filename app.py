@@ -34,12 +34,12 @@ class UploadForm(FlaskForm):
     submit = SubmitField("Transfer style")
 
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device = "cpu"
 
 encoder =  VggEncoder('vgg_normalised.pth').to(device)
 decoder = Decoder().to(device)
 
-decoder.load_state_dict(torch.load("experiment/final_exp/decoder_final.pth"))
+decoder.load_state_dict(torch.load("experiment/final_exp/decoder_final.pth" , map_location=device))
 
 encoder.eval()
 decoder.eval()
@@ -106,7 +106,7 @@ def index():
             content_filename = form.content_path.data
 
         if form.style.data and form.style.data.filename:
-            if allowed_file(form.content.data.filename):
+            if allowed_file(form.style.data.filename):
                 style_filename = secure_filename(form.style.data.filename)
                 form.style.data.save(os.path.join(app.config['UPLOAD_FOLDER'] , style_filename))
                 form.style_path.data =  style_filename
